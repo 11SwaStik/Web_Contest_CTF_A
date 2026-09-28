@@ -5,9 +5,9 @@ solve three independent challenges and submit a `FLAG{...}` for each.
 
 | # | Challenge | Topic | Route | Status |
 |---|-----------|-------|-------|--------|
-| Q1 | ShopSmart | SQL Injection | `/shop` | ✅ built (Set A) |
-| Q2 | MemberPortal | Auth & Session | `/portal` | 🚧 coming |
-| Q3 | DataBridge API | API Attacks | `/api` | 🚧 coming |
+| Q1 | ShopSmart | SQL Injection | `/shop` |  built (Set A) |
+| Q2 | MemberPortal | Auth & Session | `/portal` |  coming |
+| Q3 | DataBridge API | API Attacks | `/api` | coming |
 
 Challenges are independent — failing one does not block the others.
 
