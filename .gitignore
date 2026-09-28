@@ -5,7 +5,7 @@ __pycache__/
 .venv/
 venv/
 env/
-
+test/*
 # SQLite database (seeded fresh on startup)
 *.db
 **/*.db
