@@ -1,0 +1,15 @@
+{% extends "shop/store_base.html" %}
+{% block title %}About — Voltix{% endblock %}
+{% block shop %}
+  <nav class="breadcrumb"><a href="{{ url_for('shop.index') }}">Home</a> / About</nav>
+  <h1 class="page-title">About Voltix</h1>
+  <div class="prose">
+    <p>Voltix is an independent electronics store specialising in desk gear,
+       peripherals and audio. Founded in 2019, we ship to over 30 countries.</p>
+    <p>Our small team hand-picks every product in the catalogue and stands behind
+       a 30-day return policy on all orders.</p>
+    <h2>Contact</h2>
+    <p>Support: <span class="muted">support@voltix.example</span><br>
+       Hours: Mon–Fri, 9am–6pm.</p>
+  </div>
+{% endblock %}

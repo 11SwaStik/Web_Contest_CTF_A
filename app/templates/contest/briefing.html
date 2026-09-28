@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Scaler · Security Assessment{% endblock %}
+{% block body %}
+<div class="scaler">
+  <header class="scaler-top">
+    <div class="scaler-wordmark">SCALER</div>
+    <span class="scaler-top__tag">Security Lab</span>
+  </header>
+
+  <main class="scaler-main">
+    <section class="scaler-hero">
+      <p class="scaler-eyebrow">Capture the Flag · Web Security</p>
+      <h1>Breach three apps.<br>Capture three flags.</h1>
+      <p class="scaler-lede">Each target is a real, working application with one hidden
+         weakness. Recon it, exploit it, and submit the flag.</p>
+      <div class="scaler-chips">
+        <span class="scaler-chip">{{ icon('target', 15) }} 3 targets</span>
+        <span class="scaler-chip">{{ icon('flag', 15) }} 3 flags</span>
+        <span class="scaler-chip">{{ icon('search', 15) }} recon-first</span>
+        <span class="scaler-chip">{{ icon('shield-check', 15) }} authorised use</span>
+      </div>
+    </section>
+
+    <section class="scaler-targets">
+      {% for t in targets %}
+        <a class="scaler-target" href="{{ t.url }}" style="--accent: {{ t.accent }}">
+          <span class="scaler-target__ic">{{ icon(t.icon, 22) }}</span>
+          <span class="scaler-target__kind">{{ t.kind }}</span>
+          <span class="scaler-target__name">{{ t.name }}</span>
+          <span class="scaler-target__desc">{{ t.desc }}</span>
+          <span class="scaler-target__go">Open target →</span>
+        </a>
+      {% endfor %}
+    </section>
+
+    <section class="scaler-rules">
+      <div class="scaler-rule">{{ icon('flag', 18) }}<div><b>One flag each</b><span>Submit the exact <code>FLAG{…}</code> string.</span></div></div>
+      <div class="scaler-rule">{{ icon('target', 18) }}<div><b>Scope</b><span>Only these three targets. Don't attack the platform.</span></div></div>
+      <div class="scaler-rule">{{ icon('search', 18) }}<div><b>By hand</b><span>No automated scanners or brute-forcing.</span></div></div>
+      <div class="scaler-rule">{{ icon('zap', 18) }}<div><b>Any order</b><span>Targets are independent — start anywhere.</span></div></div>
+    </section>
+  </main>
+
+  <footer class="scaler-foot">© 2026 Scaler · Internal security training · Authorised use only</footer>
+</div>
+{% endblock %}

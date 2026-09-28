@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block body %}
+<header class="shop-header">
+  <div class="shop-header__bar">
+    <a class="shop-brand" href="{{ url_for('shop.index') }}">
+      <span class="shop-brand__mark">🛍️</span> Voltix
+    </a>
+
+    <form class="shop-search" method="get" action="{{ url_for('shop.index') }}" role="search">
+      <input type="text" name="q" value="{{ q|default('', true) }}"
+             placeholder="Search products…" aria-label="Search products">
+      <button type="submit" aria-label="Search">🔍</button>
+    </form>
+
+    <nav class="shop-nav">
+      <a href="{{ url_for('shop.about') }}">About</a>
+      <a class="shop-cart" href="{{ url_for('shop.cart') }}" aria-label="Cart">
+        🛒 <span class="badge">{{ cart_count }}</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="shop-catnav">
+    <a href="{{ url_for('shop.index') }}">All</a>
+    {% for c in categories %}
+      <a href="{{ url_for('shop.index', category=c.slug) }}"
+         class="{{ 'active' if active == c.slug else '' }}">{{ c.name }}</a>
+    {% endfor %}
+  </div>
+</header>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-wrap">
+      {% for category, msg in messages %}
+        <div class="flash flash--{{ category }}">{{ msg }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<main class="shop-main">
+  {% block shop %}{% endblock %}
+</main>
+
+<footer class="shop-footer">
+  <div class="shop-footer__cols">
+    <div>
+      <h4>Voltix</h4>
+      <p>Desk gear and peripherals, shipped fast.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      {% for c in categories %}
+        <a href="{{ url_for('shop.index', category=c.slug) }}">{{ c.name }}</a>
+      {% endfor %}
+    </div>
+    <div>
+      <h4>Help</h4>
+      <a href="{{ url_for('shop.about') }}">About us</a>
+      <a href="{{ url_for('shop.shipping') }}">Shipping</a>
+      <a href="{{ url_for('shop.returns') }}">Returns</a>
+      <a href="{{ url_for('shop.contact') }}">Contact</a>
+    </div>
+  </div>
+  <div class="shop-footer__legal">© 2026 Voltix, Inc. · Demo environment</div>
+</footer>
+{% endblock %}

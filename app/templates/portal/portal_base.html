@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block body %}
+<div class="mrd">
+  <aside class="mrd-side">
+    <div class="mrd-ws">
+      <span class="mrd-ws__name">Meridian</span>
+      <span class="mrd-ws__badge">{{ (user.company|default('M'))[0]|upper }}</span>
+    </div>
+    <nav class="mrd-nav">
+      <div class="mrd-nav__label">Menu</div>
+      <a href="{{ url_for('auth.dashboard') }}" class="{{ 'on' if active=='dashboard' }}">{{ icon('dashboard') }} Dashboard</a>
+      <a href="{{ url_for('auth.billing') }}" class="{{ 'on' if active=='billing' }}">{{ icon('billing') }} Billing</a>
+      <a href="{{ url_for('auth.team') }}" class="{{ 'on' if active=='team' }}">{{ icon('team') }} Team</a>
+      <a href="{{ url_for('auth.settings') }}" class="{{ 'on' if active=='settings' }}">{{ icon('settings') }} Settings</a>
+      <a href="{{ url_for('auth.support') }}" class="{{ 'on' if active=='support' }}">{{ icon('support') }} Support</a>
+      <div class="mrd-nav__label">Administration</div>
+      <a href="{{ url_for('auth.admin') }}" class="mrd-nav__admin {{ 'on' if active=='admin' }}">{{ icon('admin') }} Admin</a>
+    </nav>
+    <div class="mrd-side__foot">
+      <div class="mrd-plan">
+        <span class="mrd-plan__label">Plan</span>
+        <span class="mrd-plan__value">{{ user.plan|default('—') }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="mrd-body">
+    <header class="mrd-top">
+      <h1 class="mrd-top__title">{% block heading %}{% endblock %}</h1>
+      <div class="mrd-user">
+        <div class="mrd-user__meta">
+          <span class="mrd-user__name">{{ user.full_name|default('Account') }}</span>
+          <span class="mrd-user__co">{{ user.company|default('') }}</span>
+        </div>
+        <div class="mrd-avatar">{{ (user.full_name|default('U'))[0]|upper }}</div>
+        <a class="mrd-logout" href="{{ url_for('auth.logout') }}">Log out</a>
+      </div>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="mrd-flash-wrap">
+          {% for category, msg in messages %}
+            <div class="flash flash--{{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <main class="mrd-main">{% block portal %}{% endblock %}</main>
+  </div>
+</div>
+{% endblock %}

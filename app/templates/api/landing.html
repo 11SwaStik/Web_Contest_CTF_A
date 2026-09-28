@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}DataBridge — The data API for modern teams{% endblock %}
+{% block body %}
+<div class="db">
+  <header class="db-nav">
+    <a class="db-logo" href="{{ url_for('api.landing') }}">⚡ DataBridge</a>
+    <nav>
+      <a href="{{ url_for('api.docs') }}">Docs</a>
+      <a href="{{ url_for('api.docs') }}#reference">Reference</a>
+      <a href="{{ url_for('api.dashboard') }}">Dashboard</a>
+    </nav>
+  </header>
+
+  <section class="db-hero">
+    <div class="db-hero__text">
+      <span class="db-pill">Developer platform</span>
+      <h1>The data API for modern teams.</h1>
+      <p>Sync accounts, usage and billing across your stack with one clean REST
+         API. Ship in minutes, not weeks.</p>
+      <div class="db-hero__cta">
+        <a class="db-btn" href="{{ url_for('api.docs') }}">Read the docs</a>
+        <a class="db-btn db-btn--ghost" href="{{ url_for('api.docs') }}#reference">API reference</a>
+      </div>
+    </div>
+    <div class="db-hero__code">
+      <div class="db-code__bar"><span></span><span></span><span></span></div>
+      <pre class="db-code">$ curl https://api.databridge.example/v1/accounts/me \
+    -H "Authorization: Bearer db_live_sk_..."
+
+{
+  "id": 1007,
+  "owner_name": "Acme Inc.",
+  "plan": "starter"
+}</pre>
+    </div>
+  </section>
+
+  <section class="db-features">
+    <div class="db-feature"><div class="db-feature__ic">{{ icon('zap', 20) }}</div><h3>REST-first</h3><p>Predictable resource URLs and JSON everywhere.</p></div>
+    <div class="db-feature"><div class="db-feature__ic">{{ icon('lock', 20) }}</div><h3>Token auth</h3><p>Scoped bearer tokens with per-account access.</p></div>
+    <div class="db-feature"><div class="db-feature__ic">{{ icon('chart', 20) }}</div><h3>Usage metering</h3><p>Track requests and limits in real time.</p></div>
+  </section>
+
+  <footer class="db-foot">
+    <span>© 2026 DataBridge</span>
+    <a href="/">Scaler Security Lab</a>
+  </footer>
+</div>
+{% endblock %}
