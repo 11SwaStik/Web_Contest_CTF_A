@@ -13,3 +13,4 @@ app/contest.db
 .DS_Store
 .vscode/
 .idea/
+tests/
